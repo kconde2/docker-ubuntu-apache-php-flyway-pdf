@@ -35,14 +35,14 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN pecl channel-update pecl.php.net
-RUN echo "\n" | pecl install -f yaml-2.0.2
+RUN echo "\n" | pecl install -f yaml-2.0.4
 
 # install flyway on a shared dir
-ENV FLYWAY_DIR=/usr/local/lib/flyway-5.0.2
-RUN wget -q -O /tmp/flyway-commandline-5.0.2-linux-x64.tar.gz \
-         https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.0.2/flyway-commandline-5.0.2-linux-x64.tar.gz \
+ENV FLYWAY_DIR=/usr/local/lib/flyway-5.2.4
+RUN wget -q -O /tmp/flyway-commandline-5.2.4-linux-x64.tar.gz \
+         https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.2.4/flyway-commandline-5.2.4-linux-x64.tar.gz \
     && mkdir -p /usr/local/lib/ \
-    && tar -C /usr/local/lib/ -xzf /tmp/flyway-commandline-5.0.2-linux-x64.tar.gz \
+    && tar -C /usr/local/lib/ -xzf /tmp/flyway-commandline-5.2.4-linux-x64.tar.gz \
     && rm -rf /tmp/*
 
 EXPOSE 80 443
