@@ -17,12 +17,12 @@ RUN apt-get update \
     && apt-get dist-upgrade -y \
     && apt-get install -y --no-install-recommends \
                        vim xvfb xauth wkhtmltopdf zlib1g-dev mysql-client logrotate \
-                       curl wget less supervisor libyaml-dev \
+                       curl unzip wget less supervisor libyaml-dev \
                        build-essential gnupg \
                        apache2 \
                        libapache2-mod-php7.2\
                        apachetop \
-                       nodejs \
+                       nodejs npm \
                        php7.2 \
                        php7.2-curl \
                        php7.2-fpm \
