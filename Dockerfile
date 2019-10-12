@@ -1,14 +1,18 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.04
 
 # -----------------------------------------------------------------------------
 # install packages & PHP modules & tools
 #  - zip
+#  - nodejs
 #  - pdo_mysql
 #  - xdebug (dev only)
 #  - xvfb wkhtmltopdf xauth required to generate pdf files
 #  - wkhtmltopdf < v0.12.4 has a bug that makes it crash, so we download v0.12.5 instead
 # -----------------------------------------------------------------------------
 ENV DEBIAN_FRONTEND=noninteractive
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+
 RUN apt-get update \
     && apt-get dist-upgrade -y \
     && apt-get install -y --no-install-recommends \
@@ -18,6 +22,7 @@ RUN apt-get update \
                        apache2 \
                        libapache2-mod-php7.2\
                        apachetop \
+                       nodejs \
                        php7.2 \
                        php7.2-curl \
                        php7.2-fpm \
@@ -38,11 +43,11 @@ RUN pecl channel-update pecl.php.net
 RUN echo "\n" | pecl install -f yaml-2.0.4
 
 # install flyway on a shared dir
-ENV FLYWAY_DIR=/usr/local/lib/flyway-5.2.4
-RUN wget -q -O /tmp/flyway-commandline-5.2.4-linux-x64.tar.gz \
-         https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.2.4/flyway-commandline-5.2.4-linux-x64.tar.gz \
+ENV FLYWAY_DIR=/usr/local/lib/flyway-6.0.6
+RUN wget -q -O /tmp/flyway-commandline-6.0.6-linux-x64.tar.gz \
+         https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/6.0.6/flyway-commandline-6.0.6-linux-x64.tar.gz \
     && mkdir -p /usr/local/lib/ \
-    && tar -C /usr/local/lib/ -xzf /tmp/flyway-commandline-5.2.4-linux-x64.tar.gz \
+    && tar -C /usr/local/lib/ -xzf /tmp/flyway-commandline-6.0.6-linux-x64.tar.gz \
     && rm -rf /tmp/*
 
 EXPOSE 80 443
