@@ -11,8 +11,6 @@ FROM ubuntu:19.04
 # -----------------------------------------------------------------------------
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-
 RUN apt-get update \
     && apt-get dist-upgrade -y \
     && apt-get install -y --no-install-recommends \
@@ -22,7 +20,6 @@ RUN apt-get update \
                        apache2 \
                        libapache2-mod-php7.2\
                        apachetop \
-                       nodejs npm \
                        php7.2 \
                        php7.2-curl \
                        php7.2-fpm \
@@ -33,6 +30,8 @@ RUN apt-get update \
                        php-dev \
                        php-pear \
                        composer \
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs \
     && wget -q -O /tmp/wkhtmltox_0.12.5-rc.deb "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb" \
     && apt install -y /tmp/wkhtmltox_0.12.5-rc.deb \
     && apt-get -y autoremove \
