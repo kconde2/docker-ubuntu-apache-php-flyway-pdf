@@ -15,7 +15,7 @@ RUN apt-get update \
     && apt-get dist-upgrade -y \
     && apt-get install -y --no-install-recommends \
                        vim xvfb xauth wkhtmltopdf zlib1g-dev mysql-client logrotate \
-                       curl unzip wget less supervisor libyaml-dev \
+                       curl wget unzip less supervisor libyaml-dev iputils-ping tmux ripgrep \
                        build-essential gnupg \
                        apache2 \
                        libapache2-mod-php7.2\
@@ -42,11 +42,11 @@ RUN pecl channel-update pecl.php.net
 RUN echo "\n" | pecl install -f yaml-2.0.4
 
 # install flyway on a shared dir
-ENV FLYWAY_DIR=/usr/local/lib/flyway-6.0.6
-RUN wget -q -O /tmp/flyway-commandline-6.0.6-linux-x64.tar.gz \
-         https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/6.0.6/flyway-commandline-6.0.6-linux-x64.tar.gz \
+ENV FLYWAY_DIR=/usr/local/lib/flyway-6.3.1
+RUN wget -q -O /tmp/flyway-commandline-6.3.1-linux-x64.tar.gz \
+         https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/6.0.6/flyway-commandline-6.3.1-linux-x64.tar.gz \
     && mkdir -p /usr/local/lib/ \
-    && tar -C /usr/local/lib/ -xzf /tmp/flyway-commandline-6.0.6-linux-x64.tar.gz \
+    && tar -C /usr/local/lib/ -xzf /tmp/flyway-commandline-6.3.1-linux-x64.tar.gz \
     && rm -rf /tmp/*
 
 EXPOSE 80 443
