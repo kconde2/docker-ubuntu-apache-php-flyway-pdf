@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:19.10
 
 # -----------------------------------------------------------------------------
 # install packages & PHP modules & tools
@@ -18,17 +18,18 @@ RUN apt-get update \
                        curl wget unzip less supervisor libyaml-dev iputils-ping tmux ripgrep \
                        build-essential gnupg \
                        apache2 \
-                       libapache2-mod-php7.2\
+                       libapache2-mod-php7.3\
                        apachetop \
-                       php7.2 \
-                       php7.2-curl \
-                       php7.2-fpm \
-                       php7.2-mysql \
-                       php7.2-zip \
-                       php7.2-mbstring \
-                       php7.2-opcache \
+                       php7.3 \
+                       php7.3-curl \
+                       php7.3-fpm \
+                       php7.3-mysql \
+                       php7.3-zip \
+                       php7.3-mbstring \
+                       php7.3-opcache \
                        php-dev \
                        php-pear \
+                       phpunit \
                        composer \
     && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs \
@@ -39,7 +40,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN pecl channel-update pecl.php.net
-RUN echo "\n" | pecl install -f yaml-2.0.4
+RUN echo "" | pecl install -f yaml-2.0.4
 
 # install flyway on a shared dir
 ENV FLYWAY_DIR=/usr/local/lib/flyway-6.3.1
