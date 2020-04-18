@@ -16,6 +16,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
                        vim xvfb xauth wkhtmltopdf zlib1g-dev mysql-client logrotate \
                        curl wget unzip less supervisor libyaml-dev iputils-ping tmux ripgrep \
+                       locales language-pack-es-base \
                        build-essential gnupg \
                        apache2 \
                        libapache2-mod-php7.3\
