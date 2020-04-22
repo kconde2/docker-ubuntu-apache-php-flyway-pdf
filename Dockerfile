@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu:20.04
 
 # -----------------------------------------------------------------------------
 # install packages & PHP modules & tools
@@ -19,15 +19,15 @@ RUN apt-get update \
                        locales language-pack-es-base \
                        build-essential gnupg \
                        apache2 \
-                       libapache2-mod-php7.3\
+                       libapache2-mod-php7.4\
                        apachetop \
-                       php7.3 \
-                       php7.3-curl \
-                       php7.3-fpm \
-                       php7.3-mysql \
-                       php7.3-zip \
-                       php7.3-mbstring \
-                       php7.3-opcache \
+                       php7.4 \
+                       php7.4-curl \
+                       php7.4-fpm \
+                       php7.4-mysql \
+                       php7.4-zip \
+                       php7.4-mbstring \
+                       php7.4-opcache \
                        php-dev \
                        php-pear \
                        phpunit \
